@@ -60,14 +60,14 @@ def hello():
     return("started")
 
 # /callbackにPOSTアクセスがあった時の処理
-# Flaskで @app.route(文字列) とすると、その直後のメソッドを使って応答する。
-# 例えば、http://localhost:5000/というサーバが立っていたとすると
-# @app.route('/hoge')としておくと、http://localhost:5000/hoge に対して応答する
+# NOTE: Flaskで @app.route(文字列) とすると、その直後のメソッドを使って応答する。
+#       例えば、http://localhost:5000/というサーバが立っていたとすると
+#       @app.route('/hoge')としておくと、http://localhost:5000/hoge に対して応答する
 @app.route("/callback", methods=['POST'])
 def callback():
     # 受け取ったリクエストメッセージに含まれるJSONメッセージをresultに保存
     # NOTE: LINE APIがcallbackに送るJSONメッセージの仕様を見ておくこと
-#           request.jsonはjsonデータをpythonの辞書型に変換したやつが入ってる。Flaskの機能。
+    #       request.jsonはjsonデータをpythonの辞書型に変換したやつが入ってる。Flaskの機能。
     result = request.json['result']
     # resultは、受け取ったイベントのリストなので、forで回す
     # NOTE: pythonのforはリストやイテレータの中身を一つづつ取り出して処理してくれる
